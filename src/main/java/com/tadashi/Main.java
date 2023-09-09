@@ -13,7 +13,10 @@ public class Main {
     }
 
     @GetMapping("/")
-    public String greet(){
-        return "<h1>Hey, This is sample greeting message!</h1>";
+    GreetResponse greet(){
+        return new GreetResponse("<h1>Hey, This is sample greeting message!</h1>");
+    }
+
+    record GreetResponse(String greet){
     }
 }
