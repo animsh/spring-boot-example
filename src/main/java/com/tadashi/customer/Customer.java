@@ -1,17 +1,44 @@
 package com.tadashi.customer;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class Customer {
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence")
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
     private int id;
+    @Column(
+            nullable = false
+    )
     private String name;
-    private  String email;
+    @Column(
+            nullable = false
+    )
+    private String email;
+    @Column(
+            nullable = false
+    )
     private int age;
 
-    public Customer(){}
+    public Customer() {
+    }
 
     public Customer(int id, String name, String email, int age) {
         this.id = id;
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
+
+    public Customer(String name, String email, int age) {
         this.name = name;
         this.email = email;
         this.age = age;
